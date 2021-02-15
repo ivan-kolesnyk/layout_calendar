@@ -13,6 +13,7 @@
     margin-right: 1px;
     margin-bottom: 1px;
     cursor: pointer;
+    transition: background-color 1s, transform 1s;
   }
 
   @for $i from 1 through 31 {
@@ -20,4 +21,10 @@
       content: "#{$i}";
     }
   }
+
+  & > div:hover {
+    background-color: $hoverColor;
+    transform: translateY(-20px);
+  }
+
 }
