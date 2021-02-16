@@ -14,6 +14,11 @@
     margin-bottom: 1px;
     cursor: pointer;
     transition: background-color 1s, transform 1s;
+
+    &:hover {
+      background-color: $hoverColor;
+      transform: translateY(-20px);
+    }
   }
 
   @for $i from 1 through 31 {
@@ -22,9 +27,20 @@
     }
   }
 
-  & > div:hover {
-    background-color: $hoverColor;
-    transform: translateY(-20px);
+  @each $day in $monthLength {
+    $trimmedCells: $day+1;
+
+    &-#{$day} :nth-child(n + #{$trimmedCells}) {
+      display: none;
+    }
+  }
+
+  @each $dayName, $dayNumber in $dayOfWeek {
+    $shift: (($dayNumber - 1) * ($cellSize + 1));
+
+    &-#{$dayName} :first-child {
+      margin-left: $shift;
+    }
   }
 
 }
